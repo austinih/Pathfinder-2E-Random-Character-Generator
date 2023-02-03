@@ -1,5 +1,11 @@
+h2 {
+    text-align: center;
+}
+
 .container {
     display: flex;
+    margin: 0 200px 25px 200px;
+    justify-content: space-around;
 }
 .img_wrap {
     max-width: 150px; 
