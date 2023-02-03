@@ -19,4 +19,3 @@ The goal of this project is to create a user friendly tool that generates a new 
 
 [Initial wireframe](https://www.figma.com/file/K56yvgOfxZw3KmiQUrrJSf/Pathfinder-Character-Generator?node-id=0%3A1&t=lb8D2xR9dq1vG2SX-1)
 
-

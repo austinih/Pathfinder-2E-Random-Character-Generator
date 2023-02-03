@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+}
+.img_wrap {
+    max-width: 150px; 
+    float:left;
+    position: relative;
+    overflow: hidden
+  }
+
+.img_wrap img{
+    width: 100%;
+    max-width: 150px;
+    height: 150px;
+    display: inline-block;
+}
+ .img_wrap .img_description {
+  position: absolute;
+  width: 100%;
+  max-width: 150px;;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  z-index: 1;
+  padding: 4px;
+  bottom: -100%;
+  transition: bottom ease 0.4s;
+  }
+  .img_wrap:hover .img_description {
+    bottom: 50%;
+  }
+
+  
+
