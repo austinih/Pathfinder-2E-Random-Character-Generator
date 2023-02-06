@@ -69,6 +69,7 @@ h2 {
   }
 .characterSheet {
   margin: 30px;
+  display: flex;
 }
 p {
   text-align: center;
@@ -76,21 +77,38 @@ p {
 #generalDetails {
   border: 2px solid black;
   max-width: 300px;
+  width: 33vw;
+  height: 25vh;
+  padding-right: 25px;
   margin: 15px;
+  
 }
 #abilityScores {
   border: 2px solid black;
   max-width: 300px;
+  width: 15vw;
+  height: 25vh;
+  margin: 15px;
+  padding-bottom: 15px;
   margin: 15px;
 }
 #skills {
   border: 2px solid black;
-  max-width: 300px;
+  padding-right: 25px;
   margin: 15px;
+  padding-bottom: 15px;
+  width:10vw;
 }
 #classFeatures {
   border: 2px solid black;
-  max-width: 300px;
+  width: 35vw;
+  padding-right: 25px;
+  padding-bottom: 15px;
   margin: 15px;
+}
+ul {
+  list-style-type: none;
+  margin:0;
+  padding-left: 15px;
 }
 

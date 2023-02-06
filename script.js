@@ -3,6 +3,8 @@
 const alchemistBtn = document.querySelector('#alchemist')
 const tester = document.querySelector('#tester')
 
+////Dice Roller Test for Stats
+
 
 
 async function getData(event) {
