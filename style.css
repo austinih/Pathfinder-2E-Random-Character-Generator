@@ -2,6 +2,7 @@ body {
     background-image: url('images/book.jpeg');
     background-size: cover;
     font-family: "Risque";
+    width:100%
 }
 
 h1 {
@@ -25,9 +26,9 @@ h2 {
 
 .container {
     display: flex;
-    margin: 0 200px 25px 200px;
-    justify-content: space-around;
-    
+    margin: 0 175px 25px 175px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 .img_wrap {
     max-width: 150px; 
@@ -65,10 +66,31 @@ h2 {
     width: 100%;
     display: flex;
     justify-content: center;
-
-    
-    
   }
-
-  
+.characterSheet {
+  margin: 30px;
+}
+p {
+  text-align: center;
+}
+#generalDetails {
+  border: 2px solid black;
+  max-width: 300px;
+  margin: 15px;
+}
+#abilityScores {
+  border: 2px solid black;
+  max-width: 300px;
+  margin: 15px;
+}
+#skills {
+  border: 2px solid black;
+  max-width: 300px;
+  margin: 15px;
+}
+#classFeatures {
+  border: 2px solid black;
+  max-width: 300px;
+  margin: 15px;
+}
 
