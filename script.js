@@ -30,5 +30,5 @@ const test = function() {
     alert("did it work?")
 }
 
-alchemistBtn.addEventListener('click',test)
+alchemistBtn.addEventListener('click',getData)
 tester.addEventListener('click',getData)

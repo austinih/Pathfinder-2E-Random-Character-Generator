@@ -15,7 +15,6 @@ h1 {
     max-width: 100vw;
     width: 100vw;
     padding: 5px 0px 5px 25px;
-    
 }
 
 h2 {
@@ -28,12 +27,13 @@ h2 {
     display: flex;
     margin: 0 200px 25px 200px;
     justify-content: space-around;
+    
 }
 .img_wrap {
     max-width: 150px; 
     float:left;
     position: relative;
-    overflow: hidden
+    overflow: hidden;
   }
 
 .img_wrap img{
@@ -43,7 +43,7 @@ h2 {
     display: inline-block;
 }
  .img_wrap .img_description {
-  position: absolute;
+  position: relative;
   width: 100%;
   max-width: 150px;;
   left: 0;
@@ -54,11 +54,21 @@ h2 {
   padding: 4px;
   bottom: -100%;
   transition: bottom ease 0.5s;
+  
   }
   .img_wrap:hover .img_description {
     bottom: 50%;
   }
+  .img_description:active {
+    box-shadow: 0 5px 9px 0 #333333, 0 7px 20px 0 #333333;
+    background: linear-gradient(#79171B,#4b070a);
+    width: 100%;
+    display: flex;
+    justify-content: center;
 
+    
+    
+  }
 
   
 
