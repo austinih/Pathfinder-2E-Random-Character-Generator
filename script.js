@@ -4,7 +4,10 @@ const alchemistBtn = document.querySelector('#alchemist')
 const barbarianBtn = document.querySelector('#barbarian')
 const tester = document.querySelector('#tester')
 const stats = document.querySelectorAll('.stat')
+const abilScoreNames = ['STR','DEX','CON','INT','WIS','CHA']
 const ancestryBox = document.querySelector('#ancestryBox')
+
+
 
 
 //formula roles a die with any amount of sides specified and returns a random integer.
@@ -24,7 +27,7 @@ const ancestryBox = document.querySelector('#ancestryBox')
 // formula is a loop that runs the rollStat function for all six of the character ability scores
     const populateStats = () => {
         for (let i=0; i<stats.length; i++) {
-            stats[i].textContent = stats[i].textContent + rollStat()
+            stats[i].textContent = `${abilScoreNames[i]}: ${rollStat()}`
         }
     }
 
@@ -37,7 +40,6 @@ chooseAncestry()
 
 async function getData(event) {
     event.preventDefault()
-    //let textInput
 
     const url = 'https://api.pathfinder2.fr/v1/pf2/ancestry'
     console.log(url)
@@ -51,7 +53,7 @@ async function getData(event) {
         .then(res => {
             let ancestryNum = chooseAncestry()
             console.log(ancestryNum)
-            ancestryBox.textContent = ancestryBox.textContent + res.results[ancestryNum].name
+            ancestryBox.textContent = `Ancestry: ${res.results[ancestryNum].name}`
         })
         .catch(err => {
             console.log("error!", err)})
@@ -64,4 +66,4 @@ const test = function() {
 
 alchemistBtn.addEventListener('click',populateStats)
 alchemistBtn.addEventListener('click',getData)
-tester.addEventListener('click',getData)
+alchemistBtn.addEventListener('click',)
