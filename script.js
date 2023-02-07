@@ -2,15 +2,20 @@
 
 const alchemistBtn = document.querySelector('#alchemist')
 const barbarianBtn = document.querySelector('#barbarian')
+const bardBtn = document.querySelector('#bard')
+const championBtn = document.querySelector('#champion')
+
 const tester = document.querySelector('#tester')
 const stats = document.querySelectorAll('.stat')
 const abilScoreNames = ['STR','DEX','CON','INT','WIS','CHA']
 const ancestryBox = document.querySelector('#ancestryBox')
-const classBox = document.querySelector('#classBox')
+let classNum = ""
+const className = document.querySelector('#className')
 const classDescription = document.querySelector('#classDescription')
+const classImg = document.querySelector('#classImg')
 
 //['Alchemist','Barbarian','Bard','Champion','Cleric','Druid','Fighter','Gunslinger','Inventor','Investigator','Magus','Monk','Oracle','Psychic','Ranger','Rogue','Sorcerer','Summoner','Swashbuckler','Thaumaturge','Witch','Wizard',']
-//[1,2,3,4,5,6,7,12,15,16,17,22]
+let randArr=[0,1,2,3,4,5,6,11,14,15,17,21]
 
 
 
@@ -79,14 +84,18 @@ async function getData(event) {
         .then (res => {
             return res.json()})
         .then(res => {
-            // let classNum = chooseClass()
-            // classBox.textContent = `Class: ${event.target.textContent}`
-            let classNum = event.target.value
-            classBox.textContent = `Class: ${res.results[classNum].name}`
+            
+            classNum = event.target.value
+            let classNameVar = `Class: ${res.results[classNum].name}`
+            className.textContent = classNameVar
+
+            classImg.src = `images/classImages/${res.results[classNum].name}.png`
+
             let classDesc = res.results[classNum].system.description.value
             classDesc = classDesc.split("</em")
             classDescription.textContent = classDesc[0].replace('<p><em>','')
                 ///the following site taught me how to split text so that only the first paragraph would be extracted: https://stackoverflow.com/questions/61791863/how-to-extract-the-content-of-the-first-paragraph-in-html-string-react-native
+            
         })
         
         .catch(err => {
@@ -95,10 +104,11 @@ async function getData(event) {
 }
 
 
-const test = function() {
-    alert("did it work?")
-}
 
 alchemistBtn.addEventListener('click',populateStats)
 alchemistBtn.addEventListener('click',getData)
-// alchemistBtn.addEventListener('click',chooseClass)
+championBtn.addEventListener('click',populateStats)
+championBtn.addEventListener('click',getData)
+
+championBtn.addEventListener('click',populateStats)
+championBtn.addEventListener('click',getRandomData)

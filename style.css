@@ -79,7 +79,7 @@ p {
   border: 2px solid black;
   max-width: 300px;
   width: 33vw;
-  height: 25vh;
+  height: 30vh;
   padding-right: 25px;
   margin: 15px;
   
@@ -112,4 +112,6 @@ ul {
   margin:0;
   padding-left: 15px;
 }
-
+#classImg {
+  width: 320px;
+}

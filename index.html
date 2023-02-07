@@ -69,20 +69,29 @@
     <div class="container">
         <div class="img_wrap">
             <img class="img_img" src="images/questionMarkToken.png" alt="Wizard" width="150px"/>
-            <button class="img_description"> Random </button>
+            <button class="img_description" id="random" value=r> Random </button>
         </div>
     </div>
 
     <div class="characterSheet">
+        <!--<div id="classImg"></div>-->
+        <img id="classImg" src="" alt="">
+
+        <div id="classFeatures">
+            <p id="className">Class Description:</p>
+            <ul>
+                <li id="classDescription"></li> 
+            </ul>   
+        </div>
 
         <div id="generalDetails">
             <p>General Info:</p>
             <ul>
                 <li id="ancestryBox">Ancestry: </li>
-                <li id="classBox">Class: </li>
                 <li id="sizeBox">Size: </li>
                 <li id="alignmentBox">Alignment: </li>
                 <li id="deityBox">Deity: </li>
+                <li id="skillProficiencies">Skill Proficiencies: </li>
             </ul>
         </div>
         <div id="abilityScores">
@@ -117,12 +126,7 @@
                 <li id="thievery">Thievery:</li>
             </ul>
         </div>
-        <div id="classFeatures">
-            <p>Class Features:</p>
-            <ul>
-                <li id="classDescription"></li> 
-            </ul>   
-        </div>
+        
 
 
 
