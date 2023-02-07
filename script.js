@@ -4,8 +4,10 @@ const alchemistBtn = document.querySelector('#alchemist')
 const barbarianBtn = document.querySelector('#barbarian')
 const bardBtn = document.querySelector('#bard')
 const championBtn = document.querySelector('#champion')
+const classBtns = document.querySelectorAll('.img_description')
+const randBtn = document.querySelector('#random')
+let randArr=[0,1,2,3,4,5,6,11,14,15,16,21]
 
-const tester = document.querySelector('#tester')
 const stats = document.querySelectorAll('.stat')
 const abilScoreNames = ['STR','DEX','CON','INT','WIS','CHA']
 const ancestryBox = document.querySelector('#ancestryBox')
@@ -15,7 +17,7 @@ const classDescription = document.querySelector('#classDescription')
 const classImg = document.querySelector('#classImg')
 
 //['Alchemist','Barbarian','Bard','Champion','Cleric','Druid','Fighter','Gunslinger','Inventor','Investigator','Magus','Monk','Oracle','Psychic','Ranger','Rogue','Sorcerer','Summoner','Swashbuckler','Thaumaturge','Witch','Wizard',']
-let randArr=[0,1,2,3,4,5,6,11,14,15,17,21]
+
 
 
 
@@ -85,6 +87,9 @@ async function getData(event) {
             return res.json()})
         .then(res => {
             
+            randBtn.value= randArr[dieRoll(12) -1]
+            console.log(randBtn.value)
+
             classNum = event.target.value
             let classNameVar = `Class: ${res.results[classNum].name}`
             className.textContent = classNameVar
@@ -105,10 +110,12 @@ async function getData(event) {
 
 
 
-alchemistBtn.addEventListener('click',populateStats)
-alchemistBtn.addEventListener('click',getData)
-championBtn.addEventListener('click',populateStats)
-championBtn.addEventListener('click',getData)
+// alchemistBtn.addEventListener('click',populateStats)
+// alchemistBtn.addEventListener('click',getData)
+// championBtn.addEventListener('click',populateStats)
+// championBtn.addEventListener('click',getData)
 
-championBtn.addEventListener('click',populateStats)
-championBtn.addEventListener('click',getRandomData)
+classBtns.forEach(button => {
+    button.addEventListener('click', getData)})
+classBtns.forEach(button => {
+        button.addEventListener('click', populateStats)})
