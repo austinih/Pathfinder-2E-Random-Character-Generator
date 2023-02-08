@@ -111,3 +111,7 @@ ul {
   width: 25vw;
   height:auto;
 }
+.profSkill {
+  list-style-type:disc;
+  margin-left: 30px;
+}

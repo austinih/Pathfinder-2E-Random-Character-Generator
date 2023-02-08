@@ -11,15 +11,15 @@ let randArr=[0,1,2,3,4,5,6,11,14,15,16,21]
 const stats = document.querySelectorAll('.stat')
 const abilScoreNames = ['STR','DEX','CON','INT','WIS','CHA']
 const ancestryBox = document.querySelector('#ancestryBox')
+const sizeBox = document.querySelector('#sizeBox')
 let classNum = ""
 const className = document.querySelector('#className')
 const classDescription = document.querySelector('#classDescription')
 const classImg = document.querySelector('#classImg')
-
+const deityBox= document.querySelector('#deityBox')
+const alignmentBox= document.querySelector('#alignmentBox')
 const skillProf = ['Acrobatics','Arcana','Athletics','Crafting','Deception','Diplomacy','Intimidation','Medicine','Nature','Occultism','Performance','Religion','Society','Stealth','Survival','Thievery']
 const skillProfBox = document.querySelector('#skillProficiencies')
-const deityBox= document.querySelector('#deityBox')
-
 
 //formula roles a die with any amount of sides specified and returns a random integer.
     const dieRoll = (sides) => {
@@ -44,23 +44,28 @@ const deityBox= document.querySelector('#deityBox')
 
 // ancestry selection function
     const chooseAncestry = () => {
-        let ancestry = Math.floor(Math.random() * 36) + 1
+        let ancestry = Math.floor(Math.random() * 36)
         return ancestry
     }
 
 // Deity selection function
-    // const chooseDeity = () => {
-    //     let deity
-    // }
+    const chooseDeity = () => {
+        let deity = Math.floor(Math.random()*260)
+        return deity
+    }
 
 //formula to gain proficiencies
 const recProfs = () => {
     let recProfArr = []
     for (let i=0;i<4;i++) {
         recProfArr.push(skillProf[dieRoll(16)-1])
+        skillProfBox.innerHTML += `<li class="profSkill">${recProfArr[i]}</li>`
     }
-    
-    skillProfBox.textContent =`Skill Proficiencies: ${recProfArr[0]}, ${recProfArr[1]}, ${recProfArr[2]}, ${recProfArr[3]}`
+        // skillProfBox.innerHTML =+ `<li>${recProfArr[0]}</li>`
+        // skillProfBox.innerHTML =+ `<li>${recProfArr[1]}</li>`
+        // skillProfBox.innerHTML =+ `<li>${recProfArr[2]}</li>`
+        // skillProfBox.innerHTML =+ `<li>${recProfArr[3]}</li>`
+    // skillProfBox.textContent =`Skill Proficiencies: ${recProfArr[0]}, ${recProfArr[1]}, ${recProfArr[2]}, ${recProfArr[3]}`
 }
 
 
@@ -76,10 +81,14 @@ async function getData(event) {
         .then(res => {
             return res.json()})
         .then(res => {
-            
+            //Select Ancestry
             let ancestryNum = chooseAncestry()
             console.log(ancestryNum)
             ancestryBox.textContent = `Ancestry: ${res.results[ancestryNum].name}`
+
+            //Record size for the selected Ancestry
+            sizeCategory = `Size: ${res.results[ancestryNum].system.size}`
+            sizeBox.textContent = sizeCategory.replace('sm','Small').replace('med',"Medium")
         })
         .catch(err => {
             console.log("error!", err)})
@@ -112,22 +121,34 @@ async function getData(event) {
         .catch(err => {
             console.log("error!", err)})          
         
-        //Get Deity Data
-        // let url3 = 'https://api.pathfinder2.fr/v1/pf2/deity'
-        // fetch(url1,
-        // {method:'GET',
-        // headers:{'Authorization':'5cfe0fea-a504-4ee4-8f88-baf84aeabef2'}
-        // })
-        // .then(res => {
-        //     return res.json()})
-        // .then(res => {
-            
-        //     let deityNum = chooseAncestry()
-        //     console.log(ancestryNum)
-        //     ancestryBox.textContent = `Ancestry: ${res.results[ancestryNum].name}`
-        // })
-        // .catch(err => {
-        //     console.log("error!", err)})
+    // Get Deity Data
+    let url3 = 'https://api.pathfinder2.fr/v1/pf2/deity'
+    fetch(url3,
+        {method:'GET',
+        headers:{'Authorization':'5cfe0fea-a504-4ee4-8f88-baf84aeabef2'}
+        })
+        .then(res => {
+            return res.json()})
+        .then(res => {
+            // select deity and show name
+            let deityNum = chooseDeity()
+            deityName = res.results[deityNum]
+            deityBox.textContent = `Deity: ${deityName.name}`
+
+            // assign alignment depending on deity
+            let alignNumArr = []
+            let alignLen = deityName.system.alignment.follower.length
+            for (i=0;i<alignLen;i++) {
+               alignNumArr.push(deityName.system.alignment.follower[i])
+            }
+            let alignmentCode = alignNumArr[dieRoll(alignLen)-1]
+
+            alignmentCode = alignmentCode.replace('L','Lawful ').replace('G','Good ').replace('N','Neutral ').replace('E','Evil ').replace('C','Chaotic ')
+
+            alignmentBox.textContent =`Alignment: ${alignmentCode}`
+        })
+        .catch(err => {
+            console.log("error!", err)})
         
 }
 
