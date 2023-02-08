@@ -9,6 +9,13 @@ const randBtn = document.querySelector('#random')
 let randArr=[0,1,2,3,4,5,6,11,14,15,16,21]
 
 const stats = document.querySelectorAll('.stat')
+const strBox = document.querySelector('#strength')
+const dexBox = document.querySelector('#dexterity')
+const conBox = document.querySelector('#constitution')
+const intBox = document.querySelector('#intelligence')
+const wisBox = document.querySelector('#wisdom')
+const chaBox = document.querySelector('#charisma')
+
 const abilScoreNames = ['STR','DEX','CON','INT','WIS','CHA']
 const ancestryBox = document.querySelector('#ancestryBox')
 const sizeBox = document.querySelector('#sizeBox')
@@ -56,22 +63,20 @@ const skillProfBox = document.querySelector('#skillProficiencies')
 
 //formula to gain proficiencies
 const recProfs = () => {
+    skillProfBox.innerHTML=""
     let recProfArr = []
     for (let i=0;i<4;i++) {
         recProfArr.push(skillProf[dieRoll(16)-1])
         skillProfBox.innerHTML += `<li class="profSkill">${recProfArr[i]}</li>`
     }
-        // skillProfBox.innerHTML =+ `<li>${recProfArr[0]}</li>`
-        // skillProfBox.innerHTML =+ `<li>${recProfArr[1]}</li>`
-        // skillProfBox.innerHTML =+ `<li>${recProfArr[2]}</li>`
-        // skillProfBox.innerHTML =+ `<li>${recProfArr[3]}</li>`
-    // skillProfBox.textContent =`Skill Proficiencies: ${recProfArr[0]}, ${recProfArr[1]}, ${recProfArr[2]}, ${recProfArr[3]}`
 }
 
 
 async function getData(event) {
     event.preventDefault()
     
+    populateStats()
+
     //Get Ancestry Data
     let url1 = 'https://api.pathfinder2.fr/v1/pf2/ancestry'
     fetch(url1,
@@ -103,24 +108,39 @@ async function getData(event) {
             return res.json()})
         .then(res => {
             
+            //determing class
             randBtn.value= randArr[dieRoll(12) -1]
             console.log(randBtn.value)
 
             classNum = event.target.value
             let classNameVar = `Class: ${res.results[classNum].name}`
             className.textContent = classNameVar
+            console.log(classNameVar)
 
+            //pull in class image
             classImg.src = `images/classImages/${res.results[classNum].name}.png`
 
+            //pull class description
             let classDesc = res.results[classNum].system.description.value
             classDesc = classDesc.split("</em")
             classDescription.textContent = classDesc[0].replace('<p><em>','')
                 ///the following site taught me how to split text so that only the first paragraph would be extracted: https://stackoverflow.com/questions/61791863/how-to-extract-the-content-of-the-first-paragraph-in-html-string-react-native
             
+            //Reassign best ability score
+            if(classNameVar == "Class: Alchemist" || classNameVar == "Class: Wizard") {intBox.textContent= 'INT: 18'} 
+            else if (classNameVar == "Class: Bard" || classNameVar == "Class: Sorcerer" ) {chaBox.textContent= 'CHA: 18'} 
+            else if (classNameVar == "Class: Cleric" || classNameVar == "Class: Druid" || classNameVar == "Class: Ranger") {wisBox.textContent= 'WIS: 18'} 
+            else if (classNameVar == "Class: Rogue" || classNameVar == "Class: Monk") {dexBox.textContent= 'DEX: 18'} 
+            else if (classNameVar == "Class: Barbarian") {strBox.textContent= 'STR: 18'} 
+            else if (classNameVar == "Class: Fighter" || classNameVar == "Class: Champion" ) {conBox.textContent= 'CON: 18'}
+            
+        
         })
         .catch(err => {
             console.log("error!", err)})          
-        
+    
+            
+
     // Get Deity Data
     let url3 = 'https://api.pathfinder2.fr/v1/pf2/deity'
     fetch(url3,
@@ -157,7 +177,6 @@ async function getData(event) {
 
 classBtns.forEach(button => {
     button.addEventListener('click', getData)})
-classBtns.forEach(button => {
-        button.addEventListener('click', populateStats)})
+
 classBtns.forEach(button => {
     button.addEventListener('click', recProfs)})
