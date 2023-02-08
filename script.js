@@ -16,9 +16,9 @@ const className = document.querySelector('#className')
 const classDescription = document.querySelector('#classDescription')
 const classImg = document.querySelector('#classImg')
 
-//['Alchemist','Barbarian','Bard','Champion','Cleric','Druid','Fighter','Gunslinger','Inventor','Investigator','Magus','Monk','Oracle','Psychic','Ranger','Rogue','Sorcerer','Summoner','Swashbuckler','Thaumaturge','Witch','Wizard',']
-
-
+const skillProf = ['Acrobatics','Arcana','Athletics','Crafting','Deception','Diplomacy','Intimidation','Medicine','Nature','Occultism','Performance','Religion','Society','Stealth','Survival','Thievery']
+const skillProfBox = document.querySelector('#skillProficiencies')
+const deityBox= document.querySelector('#deityBox')
 
 
 //formula roles a die with any amount of sides specified and returns a random integer.
@@ -48,20 +48,27 @@ const classImg = document.querySelector('#classImg')
         return ancestry
     }
 
-// class selection function
-    // const chooseClass = () => {
-    //     //classBox.textContent = event.target.textContent
-    //     classBox.textContent = `Class: ${event.target.textContent}`
-    //     return event.target.value
-        
+// Deity selection function
+    // const chooseDeity = () => {
+    //     let deity
     // }
+
+//formula to gain proficiencies
+const recProfs = () => {
+    let recProfArr = []
+    for (let i=0;i<4;i++) {
+        recProfArr.push(skillProf[dieRoll(16)-1])
+    }
+    
+    skillProfBox.textContent =`Skill Proficiencies: ${recProfArr[0]}, ${recProfArr[1]}, ${recProfArr[2]}, ${recProfArr[3]}`
+}
+
 
 async function getData(event) {
     event.preventDefault()
-
-    let url1 = 'https://api.pathfinder2.fr/v1/pf2/ancestry'
-
+    
     //Get Ancestry Data
+    let url1 = 'https://api.pathfinder2.fr/v1/pf2/ancestry'
     fetch(url1,
         {method:'GET',
         headers:{'Authorization':'5cfe0fea-a504-4ee4-8f88-baf84aeabef2'}
@@ -102,20 +109,34 @@ async function getData(event) {
                 ///the following site taught me how to split text so that only the first paragraph would be extracted: https://stackoverflow.com/questions/61791863/how-to-extract-the-content-of-the-first-paragraph-in-html-string-react-native
             
         })
-        
         .catch(err => {
             console.log("error!", err)})          
-
+        
+        //Get Deity Data
+        // let url3 = 'https://api.pathfinder2.fr/v1/pf2/deity'
+        // fetch(url1,
+        // {method:'GET',
+        // headers:{'Authorization':'5cfe0fea-a504-4ee4-8f88-baf84aeabef2'}
+        // })
+        // .then(res => {
+        //     return res.json()})
+        // .then(res => {
+            
+        //     let deityNum = chooseAncestry()
+        //     console.log(ancestryNum)
+        //     ancestryBox.textContent = `Ancestry: ${res.results[ancestryNum].name}`
+        // })
+        // .catch(err => {
+        //     console.log("error!", err)})
+        
 }
 
 
 
-// alchemistBtn.addEventListener('click',populateStats)
-// alchemistBtn.addEventListener('click',getData)
-// championBtn.addEventListener('click',populateStats)
-// championBtn.addEventListener('click',getData)
 
 classBtns.forEach(button => {
     button.addEventListener('click', getData)})
 classBtns.forEach(button => {
         button.addEventListener('click', populateStats)})
+classBtns.forEach(button => {
+    button.addEventListener('click', recProfs)})
