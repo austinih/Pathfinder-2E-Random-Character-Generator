@@ -31,6 +31,7 @@ const deityDescription = document.querySelector('#deityDescription')
 const alignmentBox= document.querySelector('#alignmentBox')
 const skillProf = ['Acrobatics','Arcana','Athletics','Crafting','Deception','Diplomacy','Intimidation','Medicine','Nature','Occultism','Performance','Religion','Society','Stealth','Survival','Thievery']
 const skillProfBox = document.querySelector('#skillProficiencies')
+const charSheets = document.querySelectorAll('.characterSheet')
 
 //formula roles a die with any amount of sides specified and returns a random integer.
     const dieRoll = (sides) => {
@@ -94,7 +95,7 @@ async function getData(event) {
             let ancestryNum = chooseAncestry()
             console.log(ancestryNum)
             ancestryBox.textContent = `Ancestry: ${res.results[ancestryNum].name}`
-            ancestryName.textContent = res.results[ancestryNum].name
+            ancestryName.textContent = `Ancestry: ${res.results[ancestryNum].name}`
 
             //pull ancestry description
             let ancestryDesc = res.results[ancestryNum].system.description.value
@@ -167,6 +168,7 @@ async function getData(event) {
             let deityNum = chooseDeity()
             deityID = res.results[deityNum]
             deityBox.textContent = `Deity: ${deityID.name}`
+            deityName.textContent = `Deity: ${deityID.name}`
 
             //pull deity desctription
             let deityDesc = res.results[deityNum].system.description.value
@@ -176,9 +178,9 @@ async function getData(event) {
 
             // assign alignment depending on deity
             let alignNumArr = []
-            let alignLen = deityName.system.alignment.follower.length
+            let alignLen = deityID.system.alignment.follower.length
             for (i=0;i<alignLen;i++) {
-               alignNumArr.push(deityName.system.alignment.follower[i])
+               alignNumArr.push(deityID.system.alignment.follower[i])
             }
             let alignmentCode = alignNumArr[dieRoll(alignLen)-1]
 
@@ -189,6 +191,9 @@ async function getData(event) {
         .catch(err => {
             console.log("error!", err)})
         
+        charSheets.forEach(sheet => {
+            sheet.style.opacity = 1
+        })
 }
 
 
