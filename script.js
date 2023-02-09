@@ -18,12 +18,16 @@ const chaBox = document.querySelector('#charisma')
 
 const abilScoreNames = ['STR','DEX','CON','INT','WIS','CHA']
 const ancestryBox = document.querySelector('#ancestryBox')
+const ancestryName = document.querySelector('#ancestryName')
+const ancestryDescription = document.querySelector('#ancestryDescription')
 const sizeBox = document.querySelector('#sizeBox')
 let classNum = ""
 const className = document.querySelector('#className')
 const classDescription = document.querySelector('#classDescription')
 const classImg = document.querySelector('#classImg')
 const deityBox= document.querySelector('#deityBox')
+const deityName = document.querySelector('#deityName')
+const deityDescription = document.querySelector('#deityDescription')
 const alignmentBox= document.querySelector('#alignmentBox')
 const skillProf = ['Acrobatics','Arcana','Athletics','Crafting','Deception','Diplomacy','Intimidation','Medicine','Nature','Occultism','Performance','Religion','Society','Stealth','Survival','Thievery']
 const skillProfBox = document.querySelector('#skillProficiencies')
@@ -90,10 +94,19 @@ async function getData(event) {
             let ancestryNum = chooseAncestry()
             console.log(ancestryNum)
             ancestryBox.textContent = `Ancestry: ${res.results[ancestryNum].name}`
+            ancestryName.textContent = res.results[ancestryNum].name
+
+            //pull ancestry description
+            let ancestryDesc = res.results[ancestryNum].system.description.value
+            ancestryDesc = ancestryDesc.split("</p>")
+            ancestryDescription.innerHTML = ancestryDesc[0].replace('<p>','').replaceAll('<em>','').replaceAll('</em>','')
+                ///the following site taught me how to split text so that only the first paragraph would be extracted: https://stackoverflow.com/questions/61791863/how-to-extract-the-content-of-the-first-paragraph-in-html-string-react-native
 
             //Record size for the selected Ancestry
             sizeCategory = `Size: ${res.results[ancestryNum].system.size}`
             sizeBox.textContent = sizeCategory.replace('sm','Small').replace('med',"Medium")
+
+            
         })
         .catch(err => {
             console.log("error!", err)})
@@ -122,17 +135,17 @@ async function getData(event) {
 
             //pull class description
             let classDesc = res.results[classNum].system.description.value
-            classDesc = classDesc.split("</em")
-            classDescription.textContent = classDesc[0].replace('<p><em>','')
+            classDesc = classDesc.split("<h1")
+            classDescription.innerHTML = classDesc[0].replace('<p><em>','')
                 ///the following site taught me how to split text so that only the first paragraph would be extracted: https://stackoverflow.com/questions/61791863/how-to-extract-the-content-of-the-first-paragraph-in-html-string-react-native
             
             //Reassign best ability score
             if(classNameVar == "The Alchemist" || classNameVar == "The Wizard") {intBox.textContent= 'INT: 18'} 
             else if (classNameVar == "The Bard" || classNameVar == "The Sorcerer" ) {chaBox.textContent= 'CHA: 18'} 
-            else if (classNameVar == "The Cleric" || classNameVar == "The Druid" || classNameVar == "The Ranger") {wisBox.textContent= 'WIS: 18'} 
-            else if (classNameVar == "The Rogue" || classNameVar == "The Monk") {dexBox.textContent= 'DEX: 18'} 
-            else if (classNameVar == "The Barbarian") {strBox.textContent= 'STR: 18'} 
-            else if (classNameVar == "The Fighter" || classNameVar == "The Champion" ) {conBox.textContent= 'CON: 18'}
+            else if (classNameVar == "The Cleric" || classNameVar == "The Druid") {wisBox.textContent= 'WIS: 18'} 
+            else if (classNameVar == "The Rogue" || classNameVar == "The Monk" || classNameVar == "The Ranger") {dexBox.textContent= 'DEX: 18'} 
+            else if (classNameVar == "The Barbarian" || classNameVar == "The Champion" || classNameVar == "The Fighter" ) {strBox.textContent= 'STR: 18'} 
+            
             
         
         })
@@ -152,8 +165,14 @@ async function getData(event) {
         .then(res => {
             // select deity and show name
             let deityNum = chooseDeity()
-            deityName = res.results[deityNum]
-            deityBox.textContent = `Deity: ${deityName.name}`
+            deityID = res.results[deityNum]
+            deityBox.textContent = `Deity: ${deityID.name}`
+
+            //pull deity desctription
+            let deityDesc = res.results[deityNum].system.description.value
+            deityDesc = deityDesc.split("</p>")
+            deityDescription.innerHTML = deityDesc[0].replace('<p>','')
+                ///the following site taught me how to split text so that only the first paragraph would be extracted: https://stackoverflow.com/questions/61791863/how-to-extract-the-content-of-the-first-paragraph-in-html-string-react-native
 
             // assign alignment depending on deity
             let alignNumArr = []
