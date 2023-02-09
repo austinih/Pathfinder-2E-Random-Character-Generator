@@ -65,7 +65,7 @@ h2 {
     justify-content: center;
   }
 .characterSheet {
-  margin: 30px;
+  margin: 10px;
   display: flex;
 }
 p {
@@ -77,31 +77,29 @@ p {
   background-color: rgba(255, 255, 255, .5);
   color: #79171B;
   width: 45vw;
-  
   margin: 15px;
-  font-size: 22px;
-  letter-spacing: 2px; 
+  font-size: 24px; 
 }
 #generalDetails {
   border: 7px solid #C29F5D;
   border-radius: 5%;
   background-color: rgba(255, 255, 255, .5);
   color: #79171B;
-  width: 25vw;
+  width: 30vw;
   
   margin: 15px; 
-  font-size: 22px;
+  font-size: 24px;
 }
 #abilityScores {
   border: 7px solid #C29F5D;
   border-radius: 5%;
   background-color: rgba(255, 255, 255, .5);
   color: #79171B;
-  width: 20vw;
+  width: 25vw;
   margin: 15px;
   padding-bottom: 15px;
   margin: 15px;
-  font-size: 22px;
+  font-size: 24px;
 }
 
 ul {
@@ -128,6 +126,8 @@ P {
   
   font-size: larger;
   align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
 
 }
 
