@@ -113,7 +113,7 @@ async function getData(event) {
             console.log(randBtn.value)
 
             classNum = event.target.value
-            let classNameVar = `Class: ${res.results[classNum].name}`
+            let classNameVar = `The ${res.results[classNum].name}`
             className.textContent = classNameVar
             console.log(classNameVar)
 
@@ -127,12 +127,12 @@ async function getData(event) {
                 ///the following site taught me how to split text so that only the first paragraph would be extracted: https://stackoverflow.com/questions/61791863/how-to-extract-the-content-of-the-first-paragraph-in-html-string-react-native
             
             //Reassign best ability score
-            if(classNameVar == "Class: Alchemist" || classNameVar == "Class: Wizard") {intBox.textContent= 'INT: 18'} 
-            else if (classNameVar == "Class: Bard" || classNameVar == "Class: Sorcerer" ) {chaBox.textContent= 'CHA: 18'} 
-            else if (classNameVar == "Class: Cleric" || classNameVar == "Class: Druid" || classNameVar == "Class: Ranger") {wisBox.textContent= 'WIS: 18'} 
-            else if (classNameVar == "Class: Rogue" || classNameVar == "Class: Monk") {dexBox.textContent= 'DEX: 18'} 
-            else if (classNameVar == "Class: Barbarian") {strBox.textContent= 'STR: 18'} 
-            else if (classNameVar == "Class: Fighter" || classNameVar == "Class: Champion" ) {conBox.textContent= 'CON: 18'}
+            if(classNameVar == "The Alchemist" || classNameVar == "The Wizard") {intBox.textContent= 'INT: 18'} 
+            else if (classNameVar == "The Bard" || classNameVar == "The Sorcerer" ) {chaBox.textContent= 'CHA: 18'} 
+            else if (classNameVar == "The Cleric" || classNameVar == "The Druid" || classNameVar == "The Ranger") {wisBox.textContent= 'WIS: 18'} 
+            else if (classNameVar == "The Rogue" || classNameVar == "The Monk") {dexBox.textContent= 'DEX: 18'} 
+            else if (classNameVar == "The Barbarian") {strBox.textContent= 'STR: 18'} 
+            else if (classNameVar == "The Fighter" || classNameVar == "The Champion" ) {conBox.textContent= 'CON: 18'}
             
         
         })
