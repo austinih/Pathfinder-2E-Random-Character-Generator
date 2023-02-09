@@ -132,7 +132,8 @@ async function getData(event) {
             console.log(classNameVar)
 
             //pull in class image
-            classImg.src = `images/classImages/${res.results[classNum].name}.png`
+            classImg.src = `images/ClassImages/${res.results[classNum].name}.png`
+            console.log(`this is the class you're looking for: ${res.results[classNum].name}`)
 
             //pull class description
             let classDesc = res.results[classNum].system.description.value

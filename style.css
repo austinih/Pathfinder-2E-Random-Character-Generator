@@ -72,6 +72,7 @@ h2 {
 }
 #classImg {
   width: 30vw;
+  max-height: 800px;
 }
 .descriptions {
   border: 5px solid #C29F5D;
@@ -79,6 +80,7 @@ h2 {
   background-color: rgba(255, 255, 255, .5);
   color: #79171B;
   width: 35vw;
+  max-height: 800px;
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: -75px;
@@ -101,6 +103,7 @@ h2 {
   background-color: rgba(255, 255, 255, .5);
   color: #79171B;
   width: 25vw;
+  max-height: 800px;
   margin-top: 10px;
   margin-bottom: 10px;
   font-size: 24px;
