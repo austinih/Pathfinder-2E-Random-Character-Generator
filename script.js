@@ -1,5 +1,5 @@
 
-
+/// Global Variables/////////////////////
 const alchemistBtn = document.querySelector('#alchemist')
 const barbarianBtn = document.querySelector('#barbarian')
 const bardBtn = document.querySelector('#bard')
@@ -33,11 +33,13 @@ const skillProf = ['Acrobatics','Arcana','Athletics','Crafting','Deception','Dip
 const skillProfBox = document.querySelector('#skillProficiencies')
 const charSheets = document.querySelectorAll('.characterSheet')
 
-//formula roles a die with any amount of sides specified and returns a random integer.
+////Functions
+
+//Function roles a die with any amount of sides specified and returns a random integer.
     const dieRoll = (sides) => {
         return Math.floor(Math.random() * sides) + 1
     }
-// formula calclulates the value for a stat. To calculate it will roll 6 sided dice 4 times and will take the sum of the 3 highest rolled values
+//Function calclulates the value for a stat. To calculate it will roll 6 sided dice 4 times and will take the sum of the 3 highest rolled values
     const rollStat = () => {
         let statRolls =[]
         for (let i=0;i<4;i++) {
@@ -47,7 +49,7 @@ const charSheets = document.querySelectorAll('.characterSheet')
         let statTotal = statRolls.reduce((accumulator,val) => accumulator + val,0)
         return statTotal
     }
-// formula is a loop that runs the rollStat function for all six of the character ability scores
+//Function is a loop that runs the rollStat function for all six of the character ability scores
     const populateStats = () => {
         for (let i=0; i<stats.length; i++) {
             stats[i].textContent = `${abilScoreNames[i]}: ${rollStat()}`
@@ -76,7 +78,7 @@ const recProfs = () => {
     }
 }
 
-
+///PI Pull Function
 async function getData(event) {
     event.preventDefault()
     
@@ -198,10 +200,10 @@ async function getData(event) {
 }
 
 
+/////Event Listeners
 
+    classBtns.forEach(button => {
+        button.addEventListener('click', getData)})
 
-classBtns.forEach(button => {
-    button.addEventListener('click', getData)})
-
-classBtns.forEach(button => {
-    button.addEventListener('click', recProfs)})
+    classBtns.forEach(button => {
+        button.addEventListener('click', recProfs)})
