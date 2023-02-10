@@ -27,6 +27,9 @@ With thousands of combinations, this tool is meant to provide interesting option
 ![Initial Page where you can select your class](images/Page1_Example.jpg)
 ![Example of generated character sheet](images/Page2_Example.jpg)
 
+### Deployed Website
+https://pathfindercharinspiration.surge.sh/
+
 ### Resources
 This project uses Pathfinder2 API (https://api.pathfinder2.fr/doc)
 Images used are from Archive of Nethys - (https://2e.aonprd.com/Rules.aspx)
