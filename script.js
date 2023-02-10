@@ -39,6 +39,7 @@ const charSheets = document.querySelectorAll('.characterSheet')
     const dieRoll = (sides) => {
         return Math.floor(Math.random() * sides) + 1
     }
+    
 //Function calclulates the value for a stat. To calculate it will roll 6 sided dice 4 times and will take the sum of the 3 highest rolled values
     const rollStat = () => {
         let statRolls =[]
@@ -78,7 +79,7 @@ const recProfs = () => {
     }
 }
 
-///PI Pull Function
+///API Pull Function
 async function getData(event) {
     event.preventDefault()
     
