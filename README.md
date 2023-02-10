@@ -29,3 +29,4 @@ With thousands of combinations, this tool is meant to provide interesting option
 
 ### Resources
 This project uses Pathfinder2 API (https://api.pathfinder2.fr/doc)
+Images used are from Archive of Nethys - (https://2e.aonprd.com/Rules.aspx)
