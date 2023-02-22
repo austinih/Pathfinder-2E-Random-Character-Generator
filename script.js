@@ -126,7 +126,7 @@ async function getData(event) {
         .then(res => {
             
             //determing class
-            randBtn.value= randArr[dieRoll(12) -1]
+            randBtn.value= dieRoll(22) -1
             console.log(randBtn.value)
 
             classNum = event.target.value
