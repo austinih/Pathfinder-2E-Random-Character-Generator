@@ -73,12 +73,12 @@ h2 {
 .characterSheet {
   margin: 15px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   opacity: 0;
 }
 #classImg {
   width: 30vw;
-  max-height: 800px;
+  height: 625px;
 }
 .descriptions {
   border: 5px solid #C29F5D;
@@ -86,14 +86,20 @@ h2 {
   background-color: rgba(255, 255, 255, .5);
   color: #79171B;
   width: 35vw;
-  max-height: 800px;
+  height: 600px;
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: -75px;
   font-size: 24px;
-  padding-bottom: 10px;
+  padding-bottom: 25px;
   text-align: justify;
+  overflow: auto;
 }
+.descriptions::-webkit-scrollbar {
+  display: none;
+}
+
+
 .row2Desc {
   border: 5px solid #C29F5D;
   border-radius: 2%;
@@ -109,11 +115,15 @@ h2 {
   background-color: rgba(255, 255, 255, .5);
   color: #79171B;
   width: 25vw;
-  max-height: 800px;
+  height: 625px;
   margin-top: 10px;
   margin-bottom: 10px;
   font-size: 24px;
-  text-align: justify;
+  overflow: auto;
+}
+
+#generalDetails::-webkit-scrollbar {
+  display: none;
 }
 .row2Desc {
   border: 5px solid #C29F5D;
@@ -121,8 +131,13 @@ h2 {
   background-color: rgba(255, 255, 255, .5);
   color: #79171B;
   width: 45vw;
+  height: 400px;
   font-size: 24px;
   text-align: justify;
+  overflow: auto;
+}
+.row2Desc::-webkit-scrollbar {
+  display: none;
 }
 ul {
   list-style-type: none;
